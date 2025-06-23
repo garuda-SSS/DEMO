@@ -11,6 +11,7 @@ public class EmailNotification extends Notification{
     @Override
     public void send() {
         System.out.println("Sending e-mail to " + this.email);
-        super.send();
+        System.out.println(this.getMessage());
+        System.out.println(this.getPriority());;
     }
 }
