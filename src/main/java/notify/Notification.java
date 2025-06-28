@@ -3,22 +3,22 @@ package notify;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public abstract class Notification implements Sendable{
-    private static final AtomicInteger COUNTER  = new AtomicInteger(1);
+public abstract class Notification implements Sendable {
+    private static final AtomicInteger COUNTER = new AtomicInteger(1);
 
     private String message;
     private Priority priority;
     private final int id;
 
 
-    public Notification(String message,Priority priority) {
-        id = COUNTER .getAndIncrement();
+    public Notification(String message, Priority priority) {
+        id = COUNTER.getAndIncrement();
         this.message = message;
         this.priority = priority;
     }
 
     public Notification() {
-        this("empty",Priority.NORMAL);
+        this("empty", Priority.NORMAL);
     }
 
     public String getMessage() {
@@ -40,6 +40,7 @@ public abstract class Notification implements Sendable{
     public void setPriority(Priority priority) {
         this.priority = priority;
     }
+
     public abstract void send();
 
     public void sendWithExtra(String extra) {

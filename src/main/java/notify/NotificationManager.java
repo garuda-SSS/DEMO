@@ -23,10 +23,12 @@ public class NotificationManager<T extends Notification> {
                 .findFirst();
     }
 
-    public List<T> get(Priority priority){
+    public List<T> get(Priority priority) {
         List<T> originalList = notificationsByPriority.get(priority);
         return (originalList != null) ? new ArrayList<>(originalList) : null;
-    };
+    }
+
+    ;
 
 
     public void sendAll(){

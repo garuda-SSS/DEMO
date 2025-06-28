@@ -1,14 +1,11 @@
 package notify;  // Пакет должен совпадать с папкой!
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Demo {
     public static void main(String[] args) {
-        Notification test2 = new EmailNotification("test@gmail.com","test2");
-        Notification test3 = new SmsNotification("22222","test3");
-        Notification test4 = new SmsNotification("22222","test4");
-        NotificationManager <Notification> manager = new NotificationManager<>();
+        Notification test2 = new EmailNotification("test@gmail.com", "test2");
+        Notification test3 = new SmsNotification("22222", "test3");
+        Notification test4 = new SmsNotification("22222", "test4");
+        NotificationManager<Notification> manager = new NotificationManager<>();
         manager.add(test2);
         manager.add(test3);
         manager.add(test4);
@@ -19,7 +16,7 @@ public class Demo {
         }
         manager.add(test4);
         System.out.println(manager.get(Priority.HIGH));
-        manager.find(10).ifPresentOrElse(Notification::send,()-> System.out.println("id не найден"));
+        manager.find(10).ifPresentOrElse(Notification::send, () -> System.out.println("id не найден"));
         manager.sendAll();
         test4.typeOfNotification();
     }
