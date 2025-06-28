@@ -6,18 +6,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public abstract class Notification implements Sendable{
     private static final AtomicInteger COUNTER  = new AtomicInteger(1);
 
-    private final int id;
-
-    public String getMessage() {
-        return message;
-    }
-
-    public Priority getPriority() {
-        return priority;
-    }
-
     private String message;
     private Priority priority;
+    private final int id;
+
 
     public Notification(String message,Priority priority) {
         id = COUNTER .getAndIncrement();
@@ -26,9 +18,15 @@ public abstract class Notification implements Sendable{
     }
 
     public Notification() {
-        id = COUNTER .getAndIncrement();
-        this.message = "empty";
-        this.priority = Priority.NORMAL;
+        this("empty",Priority.NORMAL);
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public Priority getPriority() {
+        return priority;
     }
 
     public int getId() {
@@ -44,7 +42,7 @@ public abstract class Notification implements Sendable{
     }
     public abstract void send();
 
-    public void send(String extra) {
+    public void sendWithExtra(String extra) {
         System.out.println(this.message);
         System.out.println(this.priority);
         System.out.println(extra);

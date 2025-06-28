@@ -3,13 +3,13 @@ package notify;
 public interface Sendable {
     void send();
 
-    static  <T extends Sendable> void send_all(Iterable<T> elements) {
+    static  <T extends Sendable> void sendAll(Iterable<T> elements) {
         for (T element : elements) {
             element.send();
         }
     }
 
-    default void type_of_notification(){
+    default void typeOfNotification(){
         System.out.println("Это уведомление типа " +this.getClass().getSimpleName());
     }
 }

@@ -3,13 +3,6 @@ package notify;
 import java.util.*;
 
 public class NotificationManager<T extends Notification> {
-    public Map<Priority, List<T>> getNotificationsByPriority() {
-        return notificationsByPriority;
-    }
-
-    public List<T> getNotificationsList() {
-        return notificationsList;
-    }
 
     private final List<T> notificationsList = new ArrayList<>();
     private final Map<Priority, List<T>> notificationsByPriority = new HashMap<>();
@@ -24,23 +17,20 @@ public class NotificationManager<T extends Notification> {
     }
 
 
-    public Optional<T> find(long search_id) {
+    public Optional<T> find(int search_id) {
         return notificationsList.stream()
                 .filter(element -> element.getId() == search_id)
                 .findFirst();
     }
 
     public List<T> get(Priority priority){
-        List<T> copy= new ArrayList<>();
-        if (notificationsByPriority.containsKey(priority)) {
-            copy.addAll(notificationsByPriority.get(priority));  // Ключ есть — получаем значение
-        }
-        return copy;
+        List<T> originalList = notificationsByPriority.get(priority);
+        return (originalList != null) ? new ArrayList<>(originalList) : null;
     };
 
 
     public void sendAll(){
-        Sendable.send_all(notificationsList);
+        Sendable.sendAll(notificationsList);
     }
 
 }

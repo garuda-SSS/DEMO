@@ -11,7 +11,6 @@ public class SmsNotification extends Notification{
     @Override
     public void send() {
         System.out.println("Sending sms to " + this.phone_number);
-        System.out.println(this.getMessage());
-        System.out.println(this.getPriority());;
+        System.out.println(super.toString());
     }
 }

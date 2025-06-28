@@ -12,10 +12,15 @@ public class Demo {
         manager.add(test2);
         manager.add(test3);
         manager.add(test4);
-//        manager.add(test4);
+        try {
+            manager.add(test4);
+        } catch (DuplicateIdException e) {
+            throw new RuntimeException(e);
+        }
+        manager.add(test4);
         System.out.println(manager.get(Priority.HIGH));
         manager.find(10).ifPresentOrElse(Notification::send,()-> System.out.println("id не найден"));
         manager.sendAll();
-        test4.type_of_notification();
+        test4.typeOfNotification();
     }
 }
